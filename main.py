@@ -23,7 +23,7 @@ from omegaconf import OmegaConf
 from PIL import Image
 from PIL import ImageFile, Image
 import json
-from typing import Optional
+from typing import Optional, Union
 import numpy as np
 import kornia.augmentation as K
 import imageio
@@ -442,7 +442,7 @@ def train(config_file, single_prompt=None):
     config = OmegaConf.load(config_file)
     if not hasattr(config, "folder"):
         config.folder = os.path.dirname(config_file)
-    folder_path = pathlib.Path(config.folder)
+    folder_path = Path(config.folder)
     (folder_path / slug).mkdir(exist_ok=True, parents=True)
     use_wandb = config.get("use_wandb", False)
     use_ema = config.get("use_ema", False)
